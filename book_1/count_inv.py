@@ -26,22 +26,16 @@ def merge_count_split_inv(first_half: list, second_half: list) -> (list, int):
     return merged, split_inv
 
 
-def req_count_inv(l: list) -> (list, int):
+def count_inv(l: list) -> (list, int):
     if len(l) <= 1:
         return l, 0
     else:
         mid = int(len(l) / 2)
-        sorted_first_half, left_inv = req_count_inv(l[:mid])
-        sorted_second_half, right_inv = req_count_inv(l[mid:])
+        sorted_first_half, left_inv = count_inv(l[:mid])
+        sorted_second_half, right_inv = count_inv(l[mid:])
         sorted, split_inv = merge_count_split_inv(sorted_first_half, sorted_second_half)
 
         return sorted, left_inv + right_inv + split_inv
-
-
-def count_inv(l: list) -> (list, int):
-    sorted, inv = req_count_inv(l)
-
-    return sorted, inv
 
 
 def main():
