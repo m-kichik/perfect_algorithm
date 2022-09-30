@@ -13,7 +13,7 @@ def preproc_karatsuba(n: int, m:int):
     return n, m
 
 
-def req_karatsuba(n: list, m: list):
+def rec_karatsuba(n: list, m: list):
     if len(n) == len(m) == 1:
         return n[0] * m[0]
     else:
@@ -31,9 +31,9 @@ def req_karatsuba(n: list, m: list):
 
         p, q = preproc_karatsuba(n_p, n_q)
 
-        ac = req_karatsuba(a, c)
-        bd = req_karatsuba(b, d)
-        pq = req_karatsuba(p, q)
+        ac = rec_karatsuba(a, c)
+        bd = rec_karatsuba(b, d)
+        pq = rec_karatsuba(p, q)
 
         adbc = pq - ac - bd
 
@@ -43,7 +43,7 @@ def req_karatsuba(n: list, m: list):
 def karatsuba(n: int, m: int) -> int:
     n, m = preproc_karatsuba(n, m)
 
-    return req_karatsuba(n, m)
+    return rec_karatsuba(n, m)
 
 
 def main():
